@@ -10,6 +10,6 @@ public class Dictionary {
     }
 
     public boolean match(String word) {
-        return false;
+        return words.stream().anyMatch(word::equalsIgnoreCase);
     }
 }
