@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WordGenerator {
+    Dictionary dictionary;
     Map<Integer, String> keypad = Map.of(
             0, "",
             1, "",
@@ -18,6 +19,20 @@ public class WordGenerator {
             9, "WXYZ"
     );
     List<String> words = new ArrayList<>();
+
+    public WordGenerator(Dictionary dictionary) {
+        this.dictionary = dictionary;
+    }
+
+    public List<String> getDictionaryWords(PhoneNumber phoneNumber) {
+        List<String> dictionaryMatchingWords = new ArrayList<>();
+        List<String> possibleWordsOfPhoneNumber = generatePossibleWords(phoneNumber);
+        for (String word : possibleWordsOfPhoneNumber) {
+            if (dictionary.match(word))
+                dictionaryMatchingWords.add(word);
+        }
+        return dictionaryMatchingWords;
+    }
 
     public List<String> generatePossibleWords(PhoneNumber phoneNumber) {
         List<Integer> digitsOfPhoneNumber = phoneNumber.getDigits();
