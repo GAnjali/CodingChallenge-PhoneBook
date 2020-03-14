@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Input {
-    public List<String> loadDict(String dictPath) throws IOException {
-        Path path = Paths.get(dictPath);
+    public List<String> loadFile(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
         return Files.readAllLines(path, StandardCharsets.UTF_8);
     }
 }
