@@ -1,3 +1,5 @@
+package model;
+
 import IO.Input;
 import models.Dictionary;
 import org.junit.Assert;
