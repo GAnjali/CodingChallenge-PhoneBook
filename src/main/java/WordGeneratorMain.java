@@ -12,17 +12,14 @@ public class WordGeneratorMain {
     public static void main(String[] args) throws IOException, NoArgumentException {
         Input input = new Input();
         Output output = new Output();
-        List<String> phoneNumbers ;
-        Dictionary dictionary ;
-
-        if(args.length!=0){
+        List<String> phoneNumbers;
+        Dictionary dictionary;
+        if (args.length != 0) {
             phoneNumbers = input.loadFile(args[0]);
             dictionary = new Dictionary(input.loadFile(args[1]));
-        }
-        else
+        } else
             throw new NoArgumentException();
         WordGenerator wordGenerator = new WordGenerator(dictionary);
-
         for (String phoneNum : phoneNumbers) {
             PhoneNumber phoneNumber = new PhoneNumber(Integer.parseInt(phoneNum));
             for (String word : wordGenerator.getDictionaryWords(phoneNumber)) {
