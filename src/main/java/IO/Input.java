@@ -7,9 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static helper.PhoneBookConstants.DATA_PATH;
+
 public class Input {
-    public List<String> loadFile(String filePath) throws IOException {
-        Path path = Paths.get(filePath);
+    public List<String> loadFile(String filename) throws IOException {
+        Path path = Paths.get(DATA_PATH + filename);
         return Files.readAllLines(path, StandardCharsets.UTF_8);
     }
 }

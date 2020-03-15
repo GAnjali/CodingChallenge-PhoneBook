@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static helper.PhoneBookConstants.DICT_FILE_PATH;
+import static helper.PhoneBookConstants.DATA_PATH;
 
 public class InputTest {
     private Input input;
@@ -19,7 +19,7 @@ public class InputTest {
 
     @Test
     public void shouldReturnListOfWordsWhenCalledLoadDict() throws IOException {
-        List<String> dictionaryWords = input.loadFile(DICT_FILE_PATH);
+        List<String> dictionaryWords = input.loadFile(DATA_PATH);
         Assert.assertFalse(dictionaryWords.isEmpty());
     }
 

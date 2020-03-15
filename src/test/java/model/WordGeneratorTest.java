@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static helper.PhoneBookConstants.DICT_FILE_PATH;
+import static helper.PhoneBookConstants.DATA_PATH;
 
 public class WordGeneratorTest {
     private WordGenerator wordGenerator;
@@ -19,7 +19,7 @@ public class WordGeneratorTest {
     @Before
     public void init() throws IOException {
         Input input = new Input();
-        Dictionary dictionary = new Dictionary(input.loadFile(DICT_FILE_PATH));
+        Dictionary dictionary = new Dictionary(input.loadFile(DATA_PATH));
         wordGenerator = new WordGenerator(dictionary);
         phoneNumber = new PhoneNumber(2255);
     }
