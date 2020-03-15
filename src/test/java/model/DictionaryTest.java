@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static helper.PhoneBookConstants.DICT_PATH;
+import static helper.PhoneBookConstants.DICT_FILE_PATH;
 
 public class DictionaryTest {
     private Dictionary dictionary;
@@ -16,7 +16,7 @@ public class DictionaryTest {
     @Before
     public void init() throws IOException {
         Input input = new Input();
-        dictionary = new Dictionary(input.loadDict(DICT_PATH));
+        dictionary = new Dictionary(input.loadFile(DICT_FILE_PATH));
     }
 
     @Test
