@@ -1,5 +1,7 @@
 package models;
 
+import IO.Output;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +26,20 @@ public class WordGenerator {
         this.dictionary = dictionary;
     }
 
+    public static void processPhoneNumbers(List<String> phoneNumbers, Dictionary dictionary) {
+        WordGenerator wordGenerator = new WordGenerator(dictionary);
+        Output output = new Output();
+        for (String phoneNum : phoneNumbers) {
+            PhoneNumber phoneNumber = new PhoneNumber(Integer.parseInt(phoneNum));
+            for (String word : wordGenerator.getDictionaryWords(phoneNumber)) {
+                output.print(word);
+            }
+        }
+    }
+
     public List<String> getDictionaryWords(PhoneNumber phoneNumber) {
         List<String> dictionaryMatchingWords = new ArrayList<>();
-        List<String> possibleWordsOfPhoneNumber = generatePossibleWords(phoneNumber);
+        List<String> possibleWordsOfPhoneNumber = generatePossibleLetterCombinations(phoneNumber);
         for (String word : possibleWordsOfPhoneNumber) {
             if (dictionary.match(word))
                 dictionaryMatchingWords.add(word);
@@ -34,18 +47,18 @@ public class WordGenerator {
         return dictionaryMatchingWords;
     }
 
-    public List<String> generatePossibleWords(PhoneNumber phoneNumber) {
+    private List<String> generatePossibleLetterCombinations(PhoneNumber phoneNumber) {
         List<Integer> digitsOfPhoneNumber = phoneNumber.getDigits();
-        wordMaker(digitsOfPhoneNumber, 0, "", phoneNumber.getPhoneNumber().toString().length());
+        letterCombinations(digitsOfPhoneNumber, 0, "", phoneNumber.getPhoneNumber().toString().length());
         return words;
     }
 
-    private void wordMaker(List<Integer> digitsOfPhoneNumber, int currentDigit, String word, int phoneNumberLength) {
+    private void letterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String word, int phoneNumberLength) {
         for (Character keypadCharacter : keypad.get(digitsOfPhoneNumber.get(currentDigit)).toCharArray()) {
             if (currentDigit == phoneNumberLength - 1) {
                 words.add(word + keypadCharacter);
             } else {
-                wordMaker(digitsOfPhoneNumber, currentDigit + 1, word + keypadCharacter, phoneNumberLength);
+                letterCombinations(digitsOfPhoneNumber, currentDigit + 1, word + keypadCharacter, phoneNumberLength);
             }
         }
     }

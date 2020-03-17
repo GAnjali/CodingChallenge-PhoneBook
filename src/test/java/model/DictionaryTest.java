@@ -21,7 +21,7 @@ public class DictionaryTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenCalledMatch() {
+    public void shouldReturnTrueWhenCalledMatchWithDictionaryWord() {
         Assert.assertTrue(dictionary.match("ACONEX"));
     }
 

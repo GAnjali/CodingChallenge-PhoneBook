@@ -20,14 +20,9 @@ public class WordGeneratorTest {
     @Before
     public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
-        Dictionary dictionary = new Dictionary(input.loadFile(DATA_PATH));
+        Dictionary dictionary = new Dictionary(input.loadFile("\\dictionary.txt"));
         wordGenerator = new WordGenerator(dictionary);
-        phoneNumber = new PhoneNumber(22550);
-    }
-
-    @Test
-    public void shouldReturnListOfWordsWhenCalledGeneratePossibleWords() {
-        Assert.assertNotNull(wordGenerator.generatePossibleWords(phoneNumber));
+        phoneNumber = new PhoneNumber(2255);
     }
 
     @Test
