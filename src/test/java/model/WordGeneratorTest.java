@@ -1,6 +1,7 @@
 package model;
 
 import IO.Input;
+import exceptions.NoSuchFileFoundException;
 import models.Dictionary;
 import models.PhoneNumber;
 import models.WordGenerator;
@@ -17,11 +18,11 @@ public class WordGeneratorTest {
     private PhoneNumber phoneNumber;
 
     @Before
-    public void init() throws IOException {
+    public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
         Dictionary dictionary = new Dictionary(input.loadFile(DATA_PATH));
         wordGenerator = new WordGenerator(dictionary);
-        phoneNumber = new PhoneNumber(2255);
+        phoneNumber = new PhoneNumber(22550);
     }
 
     @Test

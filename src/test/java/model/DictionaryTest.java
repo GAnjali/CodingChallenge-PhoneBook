@@ -1,6 +1,7 @@
 package model;
 
 import IO.Input;
+import exceptions.NoSuchFileFoundException;
 import models.Dictionary;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +15,7 @@ public class DictionaryTest {
     private Dictionary dictionary;
 
     @Before
-    public void init() throws IOException {
+    public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
         dictionary = new Dictionary(input.loadFile(DATA_PATH));
     }

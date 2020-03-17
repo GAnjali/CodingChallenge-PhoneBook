@@ -1,5 +1,6 @@
 package IO;
 
+import exceptions.NoSuchFileFoundException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,13 +17,13 @@ public class InputTest {
     }
 
     @Test
-    public void shouldReturnListOfWordsWhenCalledLoadDict() throws IOException {
+    public void shouldReturnListOfWordsWhenCalledLoadDict() throws IOException, NoSuchFileFoundException {
         List<String> dictionaryWords = input.loadFile("\\src\\main\\java\\data\\dictionary.txt");
         Assert.assertFalse(dictionaryWords.isEmpty());
     }
 
-    @Test(expected = IOException.class)
-    public void shouldThrowExceptionWhenCalledLoadDictWithInvalidFilePath() throws IOException {
+    @Test(expected = NoSuchFileFoundException.class)
+    public void shouldThrowExceptionWhenCalledLoadDictWithInvalidFilePath() throws IOException, NoSuchFileFoundException {
         input.loadFile("\\");
     }
 }
