@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class WordGenerator {
+public class WordGeneratorUtil {
     Dictionary dictionary;
     Map<Integer, String> keypad = Map.of(
             0, "",
@@ -22,16 +22,16 @@ public class WordGenerator {
     );
     List<String> words = new ArrayList<>();
 
-    public WordGenerator(Dictionary dictionary) {
+    public WordGeneratorUtil(Dictionary dictionary) {
         this.dictionary = dictionary;
     }
 
     public static void processPhoneNumbers(List<String> phoneNumbers, Dictionary dictionary) {
-        WordGenerator wordGenerator = new WordGenerator(dictionary);
+        WordGeneratorUtil wordGeneratorUtil = new WordGeneratorUtil(dictionary);
         Output output = new Output();
         for (String phoneNum : phoneNumbers) {
             PhoneNumber phoneNumber = new PhoneNumber(Integer.parseInt(phoneNum));
-            for (String word : wordGenerator.getDictionaryWords(phoneNumber)) {
+            for (String word : wordGeneratorUtil.getDictionaryWords(phoneNumber)) {
                 output.print(word);
             }
         }

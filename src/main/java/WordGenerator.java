@@ -1,21 +1,19 @@
 import IO.Input;
-import IO.Output;
 import exceptions.NoArgumentException;
 import exceptions.NoSuchFileFoundException;
 import models.Dictionary;
-import models.PhoneNumber;
-import models.WordGenerator;
+import models.WordGeneratorUtil;
 
 import java.io.IOException;
 import java.util.List;
 
-public class WordGeneratorMain {
+public class WordGenerator {
     static List<String> phoneNumbers;
     static Dictionary dictionary;
 
     public static void main(String[] args) throws IOException, NoArgumentException, NoSuchFileFoundException {
         initialize(args);
-        WordGenerator.processPhoneNumbers(phoneNumbers, dictionary);
+        WordGeneratorUtil.processPhoneNumbers(phoneNumbers, dictionary);
     }
 
     static void initialize(String[] args) throws IOException, NoSuchFileFoundException, NoArgumentException {
