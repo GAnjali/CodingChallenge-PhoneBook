@@ -10,6 +10,7 @@ say
 it
 in
 go
+way
 ORACLE
 ACONEX
 BANGLORE
@@ -120,3 +121,4 @@ gag
 air
 guard
 an
+READY
