@@ -17,7 +17,7 @@ public class DictionaryTest {
     @Before
     public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
-        dictionary = new Dictionary(input.loadFile(DATA_PATH));
+        dictionary = new Dictionary(input.loadFile("dictionary.txt", DATA_PATH));
     }
 
     @Test

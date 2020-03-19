@@ -18,6 +18,10 @@ public class PhoneNumber {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getPhoneNumStr() {
+        return phoneNumber.toString();
+    }
+
     public List<Integer> getDigits() {
         return String.valueOf(phoneNumber).chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
     }
