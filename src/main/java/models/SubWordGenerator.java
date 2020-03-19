@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static helper.PhoneBookConstants.DATA_PATH;
+
 public class SubWordGenerator {
     List<String> matchedSubWords;
 
@@ -41,7 +43,7 @@ public class SubWordGenerator {
 
     public List<String> getSubMatchedWord(String subPhoneNumber) throws IOException, NoSuchFileFoundException {
         PhoneNumber subPhoneNum = new PhoneNumber(Integer.parseInt(subPhoneNumber));
-        Dictionary dictionary = new Dictionary(new Input().loadFile("dictionary.txt", "C:\\Users\\ganjali\\Documents\\Anjali\\Assignment-docstore\\PhoneBook\\src\\main\\java\\data"));
+        Dictionary dictionary = new Dictionary(new Input().loadFile("dictionary.txt", DATA_PATH));
         WordGeneratorUtil wordGeneratorUtil = new WordGeneratorUtil(dictionary);
         return dictionary.getMatchedWords(wordGeneratorUtil.generatePossibleLetterCombinations(subPhoneNum));
     }

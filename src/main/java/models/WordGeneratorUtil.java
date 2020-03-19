@@ -1,7 +1,8 @@
 package models;
 
-import IO.Output;
+import exceptions.NoSuchFileFoundException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,43 +21,34 @@ public class WordGeneratorUtil {
             8, "TUV",
             9, "WXYZ"
     );
-    List<String> words = new ArrayList<>();
+    List<String> matchedWords;
+    List<String> outputSubWords;
 
     public WordGeneratorUtil(Dictionary dictionary) {
         this.dictionary = dictionary;
+        matchedWords = new ArrayList<>();
     }
 
-    public static void processPhoneNumbers(List<String> phoneNumbers, Dictionary dictionary) {
-        WordGeneratorUtil wordGeneratorUtil = new WordGeneratorUtil(dictionary);
-        Output output = new Output();
-        for (String phoneNum : phoneNumbers) {
-            PhoneNumber phoneNumber = new PhoneNumber(Integer.parseInt(phoneNum));
-            for (String word : wordGeneratorUtil.getDictionaryWords(phoneNumber)) {
-                output.print(word);
-            }
+    public List<String> generateWord(String phoneNumber) throws IOException, NoSuchFileFoundException {
+        List<String> matchedWords = dictionary.getMatchedWords(this.generatePossibleLetterCombinations(new PhoneNumber(Integer.parseInt(phoneNumber))));
+        if (matchedWords.size() == 0) {
+            outputSubWords = new ArrayList<>();
+            SubWordGenerator subWordGenerator = new SubWordGenerator();
+            return subWordGenerator.generateSubMatchedWords(phoneNumber, "", 0, phoneNumber.length());
         }
+        return matchedWords;
     }
 
-    public List<String> getDictionaryWords(PhoneNumber phoneNumber) {
-        List<String> dictionaryMatchingWords = new ArrayList<>();
-        List<String> possibleWordsOfPhoneNumber = generatePossibleLetterCombinations(phoneNumber);
-        for (String word : possibleWordsOfPhoneNumber) {
-            if (dictionary.match(word))
-                dictionaryMatchingWords.add(word);
-        }
-        return dictionaryMatchingWords;
-    }
-
-    private List<String> generatePossibleLetterCombinations(PhoneNumber phoneNumber) {
+    public List<String> generatePossibleLetterCombinations(PhoneNumber phoneNumber) {
         List<Integer> digitsOfPhoneNumber = phoneNumber.getDigits();
         letterCombinations(digitsOfPhoneNumber, 0, "", phoneNumber.getPhoneNumber().toString().length());
-        return words;
+        return matchedWords;
     }
 
     private void letterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String word, int phoneNumberLength) {
         for (Character keypadCharacter : keypad.get(digitsOfPhoneNumber.get(currentDigit)).toCharArray()) {
             if (currentDigit == phoneNumberLength - 1) {
-                words.add(word + keypadCharacter);
+                matchedWords.add(word + keypadCharacter);
             } else {
                 letterCombinations(digitsOfPhoneNumber, currentDigit + 1, word + keypadCharacter, phoneNumberLength);
             }

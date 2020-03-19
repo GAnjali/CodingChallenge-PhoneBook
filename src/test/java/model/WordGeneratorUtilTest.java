@@ -11,20 +11,30 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static helper.PhoneBookConstants.DATA_PATH;
+
 public class WordGeneratorUtilTest {
     private WordGeneratorUtil wordGeneratorUtil;
-    private PhoneNumber phoneNumber;
 
     @Before
     public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
-        Dictionary dictionary = new Dictionary(input.loadFile("\\dictionary.txt"));
+        Dictionary dictionary = new Dictionary(input.loadFile("dictionary.txt", DATA_PATH));
         wordGeneratorUtil = new WordGeneratorUtil(dictionary);
-        phoneNumber = new PhoneNumber(2255);
     }
 
     @Test
-    public void shouldReturnDictionaryMatchedListOfWordsWhenCalledGetDictionaryWords() {
-        Assert.assertTrue(wordGeneratorUtil.getDictionaryWords(phoneNumber).contains("CALL"));
+    public void shouldReturnCALLListOfWordsWhenCalledGetDictionaryWordsWith2255() throws IOException, NoSuchFileFoundException {
+        Assert.assertTrue(wordGeneratorUtil.generateWord("2255").contains("CALL"));
+    }
+
+    @Test
+    public void shouldReturnBANGLOREDictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith22645673() throws IOException, NoSuchFileFoundException {
+        Assert.assertTrue(wordGeneratorUtil.generateWord("22645673").contains("BANGLORE"));
+    }
+
+    @Test
+    public void shouldReturnWAY2DictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() throws IOException, NoSuchFileFoundException {
+        Assert.assertTrue(wordGeneratorUtil.generateWord("9292").contains("WAY2"));
     }
 }
