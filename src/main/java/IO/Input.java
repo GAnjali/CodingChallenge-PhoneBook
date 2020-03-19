@@ -10,11 +10,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static helper.PhoneBookConstants.DATA_PATH;
-
 public class Input {
-    public List<String> loadFile(String filename) throws IOException, NoSuchFileFoundException {
-        Path path = Paths.get(DATA_PATH + filename);
+    public List<String> loadFile(String filename, String filepath) throws IOException, NoSuchFileFoundException {
+        Path path = Paths.get(filepath + "\\" + filename);
         try {
             return Files.readAllLines(path, StandardCharsets.UTF_8);
         } catch (NoSuchFileException exception) {
