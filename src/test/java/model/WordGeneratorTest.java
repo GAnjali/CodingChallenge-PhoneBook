@@ -36,4 +36,9 @@ public class WordGeneratorTest {
     public void shouldReturnWAY2DictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() throws IOException, NoSuchFileFoundException {
         Assert.assertTrue(wordGenerator.generateWords("9292").contains("WAY2"));
     }
+
+    @Test
+    public void shouldReturnS0SDictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() throws IOException, NoSuchFileFoundException {
+        Assert.assertTrue(wordGenerator.generateWords("707").contains("S0S"));
+    }
 }
