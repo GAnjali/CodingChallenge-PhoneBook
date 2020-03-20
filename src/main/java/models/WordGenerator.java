@@ -21,38 +21,34 @@ public class WordGenerator {
             8, "TUV",
             9, "WXYZ"
     );
-    List<String> matchedWords;
-    List<String> outputSubWords;
     SubWordGenerator subWordGenerator;
 
     public WordGenerator(Dictionary dictionary) {
         this.dictionary = dictionary;
-        matchedWords = new ArrayList<>();
     }
 
-    public List<String> generateWord(String phoneNumber) throws IOException, NoSuchFileFoundException {
+    public List<String> generateWords(String phoneNumber) throws IOException, NoSuchFileFoundException {
         List<String> matchedWords = dictionary.getMatchedWords(this.generatePossibleLetterCombinations(new PhoneNumber(Integer.parseInt(phoneNumber))));
         if (matchedWords.size() == 0) {
-            outputSubWords = new ArrayList<>();
             subWordGenerator = new SubWordGenerator(dictionary);
-            return subWordGenerator.generateSubMatchedWords(phoneNumber, "", 0, phoneNumber.length());
+            return subWordGenerator.generateSubWords(phoneNumber, "", 0, phoneNumber.length());
         }
         return matchedWords;
     }
 
     public List<String> generatePossibleLetterCombinations(PhoneNumber phoneNumber) {
         List<Integer> digitsOfPhoneNumber = phoneNumber.getDigits();
-        letterCombinations(digitsOfPhoneNumber, 0, "", phoneNumber.getPhoneNumber().toString().length());
-        return matchedWords;
+        return letterCombinations(digitsOfPhoneNumber, 0, "", new ArrayList<>());
     }
 
-    private void letterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String word, int phoneNumberLength) {
+    private List<String> letterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
         for (Character keypadCharacter : keypad.get(digitsOfPhoneNumber.get(currentDigit)).toCharArray()) {
-            if (currentDigit == phoneNumberLength - 1) {
-                matchedWords.add(word + keypadCharacter);
+            if (currentDigit == digitsOfPhoneNumber.size() - 1) {
+                letterCombinations.add(letterCombination + keypadCharacter);
             } else {
-                letterCombinations(digitsOfPhoneNumber, currentDigit + 1, word + keypadCharacter, phoneNumberLength);
+                letterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + keypadCharacter, letterCombinations);
             }
         }
+        return letterCombinations;
     }
 }

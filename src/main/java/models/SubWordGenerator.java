@@ -16,7 +16,7 @@ public class SubWordGenerator {
         this.dictionary = dictionary;
     }
 
-    public List<String> generateSubMatchedWords(String phoneNumber, String output, int start, int end) throws IOException, NoSuchFileFoundException {
+    public List<String> generateSubWords(String phoneNumber, String output, int start, int end) throws IOException, NoSuchFileFoundException {
         for (int startIndex = start; startIndex < end; startIndex++) {
             boolean foundMatchedWord = false;
             for (int endIndex = startIndex + 1; endIndex <= end; endIndex++) {
@@ -26,7 +26,7 @@ public class SubWordGenerator {
                     if (endIndex < end) {
                         output = output + phoneNumber.charAt(endIndex++);
                         if (endIndex < end)
-                            return generateSubMatchedWords(phoneNumber, output, endIndex, end);
+                            return generateSubWords(phoneNumber, output, endIndex, end);
                     }
                     if (endIndex >= end) {
                         matchedSubWords.add(output);

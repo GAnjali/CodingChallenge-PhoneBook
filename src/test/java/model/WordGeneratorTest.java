@@ -24,16 +24,16 @@ public class WordGeneratorTest {
 
     @Test
     public void shouldReturnCALLListOfWordsWhenCalledGetDictionaryWordsWith2255() throws IOException, NoSuchFileFoundException {
-        Assert.assertTrue(wordGenerator.generateWord("2255").contains("CALL"));
+        Assert.assertTrue(wordGenerator.generateWords("2255").contains("CALL"));
     }
 
     @Test
     public void shouldReturnBANGLOREDictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith22645673() throws IOException, NoSuchFileFoundException {
-        Assert.assertTrue(wordGenerator.generateWord("22645673").contains("BANGLORE"));
+        Assert.assertTrue(wordGenerator.generateWords("22645673").contains("BANGLORE"));
     }
 
     @Test
     public void shouldReturnWAY2DictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() throws IOException, NoSuchFileFoundException {
-        Assert.assertTrue(wordGenerator.generateWord("9292").contains("WAY2"));
+        Assert.assertTrue(wordGenerator.generateWords("9292").contains("WAY2"));
     }
 }
