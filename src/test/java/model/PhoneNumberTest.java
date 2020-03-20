@@ -10,7 +10,7 @@ public class PhoneNumberTest {
 
     @Before
     public void init() {
-        phoneNumber = new PhoneNumber(2255);
+        phoneNumber = new PhoneNumber("2255");
     }
 
     @Test

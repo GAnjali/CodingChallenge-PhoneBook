@@ -46,4 +46,16 @@ public class SubWordGeneratorTest {
         List<String> subMatchedWords = subWordGenerator.generateSubWords("2255863", "");
         Assert.assertTrue(subMatchedWords.contains("CALL8ME"));
     }
+
+    @Test
+    public void shouldContainCALLDotMEForGivenNumber() {
+        List<String> subMatchedWords = subWordGenerator.generateSubWords("2255.63", "");
+        Assert.assertTrue(subMatchedWords.contains("CALL.ME"));
+    }
+
+    @Test
+    public void shouldContainCALLHyphenMEForGivenNumber() {
+        List<String> subMatchedWords = subWordGenerator.generateSubWords("2255-63", "");
+        Assert.assertTrue(subMatchedWords.contains("CALL-ME"));
+    }
 }

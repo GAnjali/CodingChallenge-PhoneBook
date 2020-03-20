@@ -4,25 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PhoneNumber {
-    Integer phoneNumber;
+    String phoneNumber;
 
-    public PhoneNumber(int phoneNumber) {
+    public PhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPhoneNumStr() {
-        return phoneNumber.toString();
     }
 
     public List<Integer> getDigits() {
-        return String.valueOf(phoneNumber).chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
+        return phoneNumber.chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
     }
 }

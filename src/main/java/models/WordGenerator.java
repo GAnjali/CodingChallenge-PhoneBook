@@ -23,7 +23,7 @@ public class WordGenerator {
     }
 
     public List<String> generateWords(String phoneNumber) {
-        List<String> matchedWords = dictionary.getMatchedWords(this.generatePossibleLetterCombinations(new PhoneNumber(Integer.parseInt(phoneNumber))));
+        List<String> matchedWords = dictionary.getMatchedWords(this.generatePossibleLetterCombinations(new PhoneNumber(phoneNumber)));
         if (matchedWords.size() == 0) {
             subWordGenerator = new SubWordGenerator(dictionary);
             return subWordGenerator.generateSubWords(phoneNumber, "");

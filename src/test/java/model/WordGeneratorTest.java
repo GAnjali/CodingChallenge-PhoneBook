@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static helper.PhoneBookConstants.DATA_PATH;
 
@@ -40,5 +41,16 @@ public class WordGeneratorTest {
     @Test
     public void shouldReturnS0SDictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() throws IOException, NoSuchFileFoundException {
         Assert.assertTrue(wordGenerator.generateWords("707").contains("S0S"));
+    }
+
+    @Test
+    public void shouldContainCALLDotMEForGivenNumber() {
+        Assert.assertTrue(wordGenerator.generateWords("2255.63").contains("CALL.ME"));
+    }
+
+    @Test
+    public void shouldContainCALLHyphenMEForGivenNumber() {
+        List<String> subMatchedWords = wordGenerator.generateWords("2255-63");
+        Assert.assertTrue(subMatchedWords.contains("CALL-ME"));
     }
 }
