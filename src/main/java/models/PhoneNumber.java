@@ -18,15 +18,15 @@ public class PhoneNumber {
         return phoneNumber.chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
     }
 
-    public void replaceDotWithHyphen() {
+    private void replaceDotWithHyphen() {
         this.phoneNumber = phoneNumber.replaceAll("[.]", "-");
     }
 
-    public void replaceSpaceWithHyphen() {
+    private void replaceSpaceWithHyphen() {
         this.phoneNumber = phoneNumber.replaceAll("\\s", "-");
     }
 
-    public void removeAllPunctuationsOtherThanDotSpace() {
+    private void removeAllPunctuationsOtherThanDotSpace() {
         this.phoneNumber = phoneNumber.replaceAll("[^0-9A-Za-z._\\-\\s]", "");
     }
 

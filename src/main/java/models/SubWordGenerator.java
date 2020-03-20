@@ -12,7 +12,6 @@ public class SubWordGenerator {
         this.dictionary = dictionary;
     }
 
-
     public List<String> generateSubWords(String phoneNumber, String output) {
         boolean foundMatchedWord = false;
         for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.length(); startIndex++) {
