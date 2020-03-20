@@ -9,13 +9,9 @@ import models.WordGenerator;
 import java.io.IOException;
 import java.util.List;
 
-import static helper.PhoneBookConstants.DATA_PATH;
-
 public class PhoneBook {
     static List<String> phoneNumbers;
     static Dictionary dictionary;
-    static WordGenerator wordGenerator;
-    static Output output;
 
     public static void main(String[] args) throws IOException, NoArgumentException, NoSuchFileFoundException {
         initialize(args);
@@ -23,8 +19,8 @@ public class PhoneBook {
     }
 
     private static void generateWords(List<String> phoneNumbers) {
-        wordGenerator = new WordGenerator(dictionary);
-        output = new Output();
+        WordGenerator wordGenerator = new WordGenerator(dictionary);
+        Output output = new Output();
         for (String phoneNumber : phoneNumbers) {
             PhoneNumber phNum = new PhoneNumber(phoneNumber);
             phNum.removeNoise();
