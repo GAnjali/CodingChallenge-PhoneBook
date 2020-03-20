@@ -3,6 +3,7 @@ import IO.Output;
 import exceptions.NoArgumentException;
 import exceptions.NoSuchFileFoundException;
 import models.Dictionary;
+import models.PhoneNumber;
 import models.WordGenerator;
 
 import java.io.IOException;
@@ -25,7 +26,9 @@ public class PhoneBook {
         wordGenerator = new WordGenerator(dictionary);
         output = new Output();
         for (String phoneNumber : phoneNumbers) {
-            output.displayWords(phoneNumber, wordGenerator.generateWords(phoneNumber));
+            PhoneNumber phNum = new PhoneNumber(phoneNumber);
+            phNum.removeNoise();
+            output.displayWords(phoneNumber, wordGenerator.generateWords(phNum.getPhoneNumber()));
         }
     }
 
