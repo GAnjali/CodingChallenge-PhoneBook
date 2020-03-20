@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Dictionary {
     List<String> words;
@@ -15,11 +16,6 @@ public class Dictionary {
     }
 
     public List<String> getMatchedWords(List<String> letterCombinations) {
-        List<String> dictionaryMatchingWords = new ArrayList<>();
-        for (String word : letterCombinations) {
-            if (match(word))
-                dictionaryMatchingWords.add(word);
-        }
-        return dictionaryMatchingWords;
+        return letterCombinations.stream().filter(this::match).collect(Collectors.toList());
     }
 }
