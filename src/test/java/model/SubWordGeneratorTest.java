@@ -24,26 +24,26 @@ public class SubWordGeneratorTest {
     }
 
     @Test
-    public void shouldContainREADY2GOForGivenNumber() throws IOException, NoSuchFileFoundException {
-        List<String> subMatchedWords = subWordGenerator.generateSubWords("73239246", "", 0, 8);
+    public void shouldContainREADY2GOForGivenNumber() {
+        List<String> subMatchedWords = subWordGenerator.generateSubWords("73239246", "");
         Assert.assertTrue(subMatchedWords.contains("READY2GO"));
     }
 
     @Test
-    public void shouldContainREADY2GO1ForGivenNumber() throws IOException, NoSuchFileFoundException {
-        List<String> subMatchedWords = subWordGenerator.generateSubWords("732392461", "", 0, 9);
+    public void shouldContainREADY2GO1ForGivenNumber() {
+        List<String> subMatchedWords = subWordGenerator.generateSubWords("732392461", "");
         Assert.assertTrue(subMatchedWords.contains("READY2GO1"));
     }
 
     @Test
-    public void shouldContainWAY2ForGivenNumber() throws IOException, NoSuchFileFoundException {
-        List<String> subMatchedWords = subWordGenerator.generateSubWords("9292", "", 0, 4);
+    public void shouldContainWAY2ForGivenNumber() {
+        List<String> subMatchedWords = subWordGenerator.generateSubWords("9292", "");
         Assert.assertTrue(subMatchedWords.contains("WAY2"));
     }
 
     @Test
-    public void shouldContainCALL8MEForGivenNumber() throws IOException, NoSuchFileFoundException {
-        List<String> subMatchedWords = subWordGenerator.generateSubWords("2255863", "", 0, 7);
+    public void shouldContainCALL8MEForGivenNumber() {
+        List<String> subMatchedWords = subWordGenerator.generateSubWords("2255863", "");
         Assert.assertTrue(subMatchedWords.contains("CALL8ME"));
     }
 }

@@ -2,18 +2,18 @@ import IO.Input;
 import exceptions.NoArgumentException;
 import exceptions.NoSuchFileFoundException;
 import models.Dictionary;
-import models.WordGeneratorUtil;
+import models.WordGenerator;
 
 import java.io.IOException;
 import java.util.List;
 
-public class WordGenerator {
+public class PhoneBook {
     static List<String> phoneNumbers;
     static Dictionary dictionary;
 
     public static void main(String[] args) throws IOException, NoArgumentException, NoSuchFileFoundException {
         initialize(args);
-        WordGeneratorUtil wordGeneratorUtil = new WordGeneratorUtil(dictionary);
+        WordGenerator wordGeneratorUtil = new WordGenerator(dictionary);
 //        wordGeneratorUtil.generateWord(phoneNumbers);
     }
 

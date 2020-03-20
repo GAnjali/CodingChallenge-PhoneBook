@@ -1,11 +1,7 @@
 package models;
 
-import exceptions.NoSuchFileFoundException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class SubWordGenerator {
     List<String> matchedSubWords;
@@ -16,27 +12,26 @@ public class SubWordGenerator {
         this.dictionary = dictionary;
     }
 
-    public List<String> generateSubWords(String phoneNumber, String output, int start, int end) throws IOException, NoSuchFileFoundException {
-        for (int startIndex = start; startIndex < end; startIndex++) {
-            boolean foundMatchedWord = false;
-            for (int endIndex = startIndex + 1; endIndex <= end; endIndex++) {
+
+    public List<String> generateSubWords(String phoneNumber, String output) {
+        boolean foundMatchedWord = false;
+        for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.length(); startIndex++) {
+            for (int endIndex = startIndex + 1; endIndex <= phoneNumber.length(); endIndex++) {
                 List<String> subWordMatch = getSubMatchedWord(phoneNumber.substring(startIndex, endIndex));
                 if (subWordMatch.size() > 0) {
                     output = output + subWordMatch.get(0);
-                    if (endIndex < end) {
+                    if (endIndex < phoneNumber.length()) {
                         output = output + phoneNumber.charAt(endIndex++);
-                        if (endIndex < end)
-                            return generateSubWords(phoneNumber, output, endIndex, end);
+                        if (endIndex < phoneNumber.length())
+                            return generateSubWords(phoneNumber.substring(endIndex), output);
                     }
-                    if (endIndex >= end) {
+                    if (endIndex >= phoneNumber.length()) {
                         matchedSubWords.add(output);
                         foundMatchedWord = true;
                         break;
                     }
                 }
             }
-            if (foundMatchedWord)
-                break;
         }
         return matchedSubWords;
     }

@@ -1,8 +1,5 @@
 package models;
 
-import exceptions.NoSuchFileFoundException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +24,12 @@ public class WordGenerator {
         this.dictionary = dictionary;
     }
 
-    public List<String> generateWords(String phoneNumber) throws IOException, NoSuchFileFoundException {
+
+    public List<String> generateWords(String phoneNumber) {
         List<String> matchedWords = dictionary.getMatchedWords(this.generatePossibleLetterCombinations(new PhoneNumber(Integer.parseInt(phoneNumber))));
         if (matchedWords.size() == 0) {
             subWordGenerator = new SubWordGenerator(dictionary);
-            return subWordGenerator.generateSubWords(phoneNumber, "", 0, phoneNumber.length());
+            return subWordGenerator.generateSubWords(phoneNumber, "");
         }
         return matchedWords;
     }
