@@ -43,7 +43,7 @@ public class SubWordGenerator {
 
     public List<String> getSubMatchedWord(String subPhoneNumber) {
         PhoneNumber subPhoneNum = new PhoneNumber(Integer.parseInt(subPhoneNumber));
-        WordGeneratorUtil wordGeneratorUtil = new WordGeneratorUtil(dictionary);
-        return dictionary.getMatchedWords(wordGeneratorUtil.generatePossibleLetterCombinations(subPhoneNum));
+        WordGenerator wordGenerator = new WordGenerator(dictionary);
+        return dictionary.getMatchedWords(wordGenerator.generatePossibleLetterCombinations(subPhoneNum));
     }
 }

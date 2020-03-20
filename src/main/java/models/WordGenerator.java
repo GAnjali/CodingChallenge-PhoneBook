@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class WordGeneratorUtil {
+public class WordGenerator {
     Dictionary dictionary;
     Map<Integer, String> keypad = Map.of(
             0, "",
@@ -23,8 +23,9 @@ public class WordGeneratorUtil {
     );
     List<String> matchedWords;
     List<String> outputSubWords;
+    SubWordGenerator subWordGenerator;
 
-    public WordGeneratorUtil(Dictionary dictionary) {
+    public WordGenerator(Dictionary dictionary) {
         this.dictionary = dictionary;
         matchedWords = new ArrayList<>();
     }
@@ -33,7 +34,7 @@ public class WordGeneratorUtil {
         List<String> matchedWords = dictionary.getMatchedWords(this.generatePossibleLetterCombinations(new PhoneNumber(Integer.parseInt(phoneNumber))));
         if (matchedWords.size() == 0) {
             outputSubWords = new ArrayList<>();
-            SubWordGenerator subWordGenerator = new SubWordGenerator();
+            subWordGenerator = new SubWordGenerator(dictionary);
             return subWordGenerator.generateSubMatchedWords(phoneNumber, "", 0, phoneNumber.length());
         }
         return matchedWords;
