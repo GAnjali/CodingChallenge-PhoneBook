@@ -13,14 +13,15 @@ public class WordGenerator {
 
     public static void main(String[] args) throws IOException, NoArgumentException, NoSuchFileFoundException {
         initialize(args);
-        WordGeneratorUtil.processPhoneNumbers(phoneNumbers, dictionary);
+        WordGeneratorUtil wordGeneratorUtil = new WordGeneratorUtil(dictionary);
+//        wordGeneratorUtil.generateWord(phoneNumbers);
     }
 
     static void initialize(String[] args) throws IOException, NoSuchFileFoundException, NoArgumentException {
         Input input = new Input();
         if (args.length != 0) {
-            phoneNumbers = input.loadFile(args[0]);
-            dictionary = new Dictionary(input.loadFile(args[1]));
+            phoneNumbers = input.loadFile(args[0], "C:\\Users\\ganjali\\Documents\\Anjali\\Assignment-docstore\\PhoneBook\\src\\main\\java\\data");
+            dictionary = new Dictionary(input.loadFile(args[1], "C:\\Users\\ganjali\\Documents\\Anjali\\Assignment-docstore\\PhoneBook\\src\\main\\java\\data"));
         } else
             throw new NoArgumentException();
     }

@@ -1,6 +1,8 @@
 package model;
 
+import IO.Input;
 import exceptions.NoSuchFileFoundException;
+import models.Dictionary;
 import models.SubWordGenerator;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,12 +11,16 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
+import static helper.PhoneBookConstants.DATA_PATH;
+
 public class SubWordGeneratorTest {
     private SubWordGenerator subWordGenerator;
 
     @Before
-    public void init() {
-        subWordGenerator = new SubWordGenerator();
+    public void init() throws IOException, NoSuchFileFoundException {
+        Input input = new Input();
+        Dictionary dictionary = new Dictionary(input.loadFile("dictionary.txt", DATA_PATH));
+        subWordGenerator = new SubWordGenerator(dictionary);
     }
 
     @Test
