@@ -35,8 +35,8 @@ public class PhoneBook {
     static void initialize(String[] args) throws IOException, NoSuchFileFoundException, NoArgumentException {
         Input input = new Input();
         if (args.length != 0) {
-            phoneNumbers = input.loadFile(args[0], DATA_PATH);
-            dictionary = new Dictionary(input.loadFile(args[1], DATA_PATH));
+            phoneNumbers = input.loadFile(args[0]);
+            dictionary = new Dictionary(input.loadFile(args[1]));
         } else
             throw new NoArgumentException();
     }

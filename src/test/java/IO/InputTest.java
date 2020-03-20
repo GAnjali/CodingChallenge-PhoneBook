@@ -8,8 +8,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static helper.PhoneBookConstants.DATA_PATH;
-
 public class InputTest {
     private Input input;
 
@@ -20,17 +18,17 @@ public class InputTest {
 
     @Test
     public void shouldReturnListOfWordsWhenCalledLoadDict() throws IOException, NoSuchFileFoundException {
-        List<String> dictionaryWords = input.loadFile("dictionary.txt", DATA_PATH);
+        List<String> dictionaryWords = input.loadFile("dictionary.txt");
         Assert.assertFalse(dictionaryWords.isEmpty());
     }
 
     @Test(expected = IOException.class)
     public void shouldThrowExceptionWhenCalledLoadDictWithInvalidFilePath() throws IOException, NoSuchFileFoundException {
-        input.loadFile("\\", DATA_PATH);
+        input.loadFile("\\");
     }
 
     @Test(expected = NoSuchFileFoundException.class)
     public void shouldThrowExceptionWhenCalledLoadDictWithInvalidFileName() throws IOException, NoSuchFileFoundException {
-        input.loadFile("dict.txt", DATA_PATH);
+        input.loadFile("dict.txt");
     }
 }

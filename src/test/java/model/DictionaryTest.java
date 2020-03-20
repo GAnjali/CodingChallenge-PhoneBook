@@ -9,15 +9,13 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static helper.PhoneBookConstants.DATA_PATH;
-
 public class DictionaryTest {
     private Dictionary dictionary;
 
     @Before
     public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
-        dictionary = new Dictionary(input.loadFile("dictionary.txt", DATA_PATH));
+        dictionary = new Dictionary(input.loadFile("dictionary.txt"));
     }
 
     @Test

@@ -11,15 +11,13 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static helper.PhoneBookConstants.DATA_PATH;
-
 public class SubWordGeneratorTest {
     private SubWordGenerator subWordGenerator;
 
     @Before
     public void init() throws IOException, NoSuchFileFoundException {
         Input input = new Input();
-        Dictionary dictionary = new Dictionary(input.loadFile("dictionary.txt", DATA_PATH));
+        Dictionary dictionary = new Dictionary(input.loadFile("dictionary.txt"));
         subWordGenerator = new SubWordGenerator(dictionary);
     }
 
