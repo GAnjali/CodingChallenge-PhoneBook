@@ -33,22 +33,26 @@ public class WordGenerator {
 
     public List<String> generatePossibleLetterCombinations(PhoneNumber phoneNumber) {
         List<Integer> digitsOfPhoneNumber = phoneNumber.getDigits();
-        return letterCombinations(digitsOfPhoneNumber, 0, "", new ArrayList<>());
+        return getLetterCombinations(digitsOfPhoneNumber, 0, "", new ArrayList<>());
     }
 
-    private List<String> letterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
-        String keypadChars = keypad.get(digitsOfPhoneNumber.get(currentDigit));
-        if (keypadChars == null) {
-            letterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + digitsOfPhoneNumber.get(currentDigit), letterCombinations);
+    private List<String> getLetterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
+        String keypadCharsOfDigit = keypad.get(digitsOfPhoneNumber.get(currentDigit));
+        if (keypadCharsOfDigit == null) {
+            getLetterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + digitsOfPhoneNumber.get(currentDigit), letterCombinations);
         } else {
-            for (Character keypadCharacter : keypadChars.toCharArray()) {
-                if (currentDigit == digitsOfPhoneNumber.size() - 1) {
-                    letterCombinations.add(letterCombination + keypadCharacter);
-                } else {
-                    letterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + keypadCharacter, letterCombinations);
-                }
-            }
+            getLetterCombinationsWithKeypadChars(keypadCharsOfDigit, digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
         }
         return letterCombinations;
+    }
+
+    private void getLetterCombinationsWithKeypadChars(String keypadCharsOfDigit, List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
+        for (Character keypadCharacter : keypadCharsOfDigit.toCharArray()) {
+            if (currentDigit == digitsOfPhoneNumber.size() - 1) {
+                letterCombinations.add(letterCombination + keypadCharacter);
+            } else {
+                getLetterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + keypadCharacter, letterCombinations);
+            }
+        }
     }
 }
