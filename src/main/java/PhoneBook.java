@@ -30,10 +30,11 @@ public class PhoneBook {
 
     static void initialize(String[] args) throws IOException, NoSuchFileFoundException, NoArgumentException {
         Input input = new Input();
-        if (args.length != 0) {
+        if (args.length == 0) {
+            throw new NoArgumentException();
+        } else {
             phoneNumbers = input.loadFile(args[0]);
             dictionary = new Dictionary(input.loadFile(args[1]));
-        } else
-            throw new NoArgumentException();
+        }
     }
 }
