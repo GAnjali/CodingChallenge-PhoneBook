@@ -7,8 +7,8 @@ public class Output {
         System.out.println(word);
     }
 
-    public void displayWords(String phoneNumber, List<String> words) {
-        if (words.size() == 0) {
+    public void display(String phoneNumber, List<String> words) {
+        if (isEmpty(words)) {
             print("No matched words found for : " + phoneNumber);
         } else {
             print("Possible words for : " + phoneNumber);
@@ -16,5 +16,9 @@ public class Output {
                 print(word);
             }
         }
+    }
+
+    private boolean isEmpty(List<String> words) {
+        return words.size() == 0;
     }
 }

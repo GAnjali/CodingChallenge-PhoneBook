@@ -14,13 +14,16 @@ import static helper.PhoneBookConstants.DATA_PATH;
 
 public class Input {
     public List<String> loadFile(String filename) throws IOException, NoSuchFileFoundException {
-        Path path = Paths.get(DATA_PATH + "\\" + filename);
         try {
-            return Files.readAllLines(path, StandardCharsets.UTF_8);
+            return Files.readAllLines(getPath(filename), StandardCharsets.UTF_8);
         } catch (NoSuchFileException exception) {
             throw new NoSuchFileFoundException();
         } catch (Exception exception) {
             throw new IOException();
         }
+    }
+
+    private Path getPath(String filename) {
+        return Paths.get(DATA_PATH + "\\" + filename);
     }
 }

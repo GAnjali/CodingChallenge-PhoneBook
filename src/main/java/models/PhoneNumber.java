@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PhoneNumber {
-    String phoneNumber;
+    private String phoneNumber;
 
     public PhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
@@ -34,6 +34,6 @@ public class PhoneNumber {
         removeAllPunctuationsOtherThanDotSpace();
         replaceDotWithHyphen();
         replaceSpaceWithHyphen();
-        return this.phoneNumber;
+        return phoneNumber;
     }
 }

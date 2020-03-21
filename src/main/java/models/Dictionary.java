@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Dictionary {
-    List<String> words;
+    private List<String> words;
 
     public Dictionary(List<String> words) {
         this.words = words;

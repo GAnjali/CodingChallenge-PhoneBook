@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubWordGenerator {
-    List<String> matchedSubWords;
-    Dictionary dictionary;
+    private final Dictionary dictionary;
+    private List<String> matchedSubWords;
 
     public SubWordGenerator(Dictionary dictionary) {
-        matchedSubWords = new ArrayList<>();
         this.dictionary = dictionary;
+        matchedSubWords = new ArrayList<>();
     }
 
-    public List<String> generateSubWords(String phoneNumber, String output) {
+    public List<String> generateSubWords(String phoneNumber, String word) {
         boolean foundMatchedWord = false;
         for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.length(); startIndex++) {
             for (int endIndex = startIndex + 1; endIndex <= phoneNumber.length(); endIndex++) {
                 List<String> subWordMatch = getSubMatchedWord(phoneNumber.substring(startIndex, endIndex));
                 if (subWordMatch.size() > 0) {
-                    output = output + subWordMatch.get(0);
+                    word += subWordMatch.get(0);
                     if (endIndex < phoneNumber.length()) {
-                        output = output + phoneNumber.charAt(endIndex++);
+                        word += phoneNumber.charAt(endIndex++);
                         if (endIndex < phoneNumber.length())
-                            return generateSubWords(phoneNumber.substring(endIndex), output);
+                            return generateSubWords(phoneNumber.substring(endIndex), word);
                     }
                     if (endIndex >= phoneNumber.length()) {
-                        matchedSubWords.add(output);
+                        matchedSubWords.add(word);
                         foundMatchedWord = true;
                         break;
                     }

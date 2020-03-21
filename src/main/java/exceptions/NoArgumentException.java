@@ -5,7 +5,7 @@ public class NoArgumentException extends Exception {
 
     public NoArgumentException() {
         super();
-        this.message = "No Command line Arguments Provided, Provide resources";
+        this.message = "No Command line Arguments Provided, Please provide resources";
     }
 
     @Override
