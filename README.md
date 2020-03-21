@@ -14,3 +14,15 @@ Phone book is an application which is used to generate the list of possible matc
   **For Example:**<br/>
    Phone Number: 73239246<br/>
    Sub matched word: READY2GO<br/>
+
+**Requirements:**
+1. Java
+2. Maven
+    
+**Steps to run:** Use below commands <br/>
+- Package the jar using maven<br/>
+<pre><code> mvn clean package</code></pre>
+- Run the program<br/>
+<pre> <code> java -cp target/PhoneBook-1.0-SNAPSHOT.jar PhoneBook</code></pre>
+- Run all tests<br/>
+<pre> <code> mvn clean test</code></pre>
