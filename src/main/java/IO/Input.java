@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static helper.PhoneBookConstants.DATA_PATH;
+import static constants.PhoneBookConstants.DATA_PATH;
 
 public class Input {
     public List<String> loadFile(String filename) throws IOException, NoSuchFileFoundException {

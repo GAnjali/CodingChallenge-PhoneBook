@@ -1,11 +1,13 @@
 package exceptions;
 
+import static constants.PhoneBookConstants.NO_FILE_FOUND_MESSAGE;
+
 public class NoSuchFileFoundException extends Exception {
     private final String message;
 
     public NoSuchFileFoundException() {
         super();
-        this.message = "No Such File found, Please provide proper file name";
+        this.message = NO_FILE_FOUND_MESSAGE;
     }
 
     @Override
