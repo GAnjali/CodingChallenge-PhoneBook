@@ -20,12 +20,12 @@ public class WordGenerator {
 
     public WordGenerator(Dictionary dictionary) {
         this.dictionary = dictionary;
-        subWordGenerator = new SubWordGenerator(dictionary);
     }
 
     public List<String> generate(String phoneNumber) {
         List<String> matchedWords = dictionary.getMatchedWords(generatePossibleLetterCombinations(new PhoneNumber(phoneNumber)));
         if (matchedWords.size() == 0) {
+            subWordGenerator = new SubWordGenerator(dictionary);
             return subWordGenerator.generate(phoneNumber, "");
         }
         return matchedWords;
