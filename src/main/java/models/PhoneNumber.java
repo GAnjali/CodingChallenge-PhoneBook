@@ -4,36 +4,36 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PhoneNumber {
-    private String phoneNumber;
+    private String value;
 
-    public PhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public PhoneNumber(String value) {
+        this.value = value;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getValue() {
+        return value;
     }
 
     public List<Integer> getDigits() {
-        return phoneNumber.chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
+        return value.chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
     }
 
     private void replaceDotWithHyphen() {
-        this.phoneNumber = phoneNumber.replaceAll("[.]", "-");
+        this.value = value.replaceAll("[.]", "-");
     }
 
     private void replaceSpaceWithHyphen() {
-        this.phoneNumber = phoneNumber.replaceAll("\\s", "-");
+        this.value = value.replaceAll("\\s", "-");
     }
 
     private void removeAllPunctuationsOtherThanDotSpace() {
-        this.phoneNumber = phoneNumber.replaceAll("[^0-9A-Za-z._\\-\\s]", "");
+        this.value = value.replaceAll("[^0-9A-Za-z._\\-\\s]", "");
     }
 
     public String removeNoise() {
         removeAllPunctuationsOtherThanDotSpace();
         replaceDotWithHyphen();
         replaceSpaceWithHyphen();
-        return phoneNumber;
+        return value;
     }
 }
