@@ -2,6 +2,9 @@ package IO;
 
 import java.util.List;
 
+import static constants.PhoneBookConstants.MATCHED_WORDS_MESSAGE;
+import static constants.PhoneBookConstants.NO_MATCHED_WORDS_FOUND_MESSAGE;
+
 public class Output {
     public void print(String word) {
         System.out.println(word);
@@ -9,9 +12,9 @@ public class Output {
 
     public void display(String phoneNumber, List<String> words) {
         if (isEmpty(words)) {
-            print("No matched words found for : " + phoneNumber);
+            print(NO_MATCHED_WORDS_FOUND_MESSAGE + phoneNumber);
         } else {
-            print("Possible words for : " + phoneNumber);
+            print(MATCHED_WORDS_MESSAGE + phoneNumber);
             for (String word : words) {
                 print(word);
             }
