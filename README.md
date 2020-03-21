@@ -2,7 +2,7 @@
 Phone book is an application which is used to generate the list of possible matches with the dictionary words for provided phone numbers.\
 **Conditions included:**
 - Application reads the input phone numbers and dictionary(uses default dictionary) from PhoneBook/src/main/data directory.<br/>
-  (Update dictionary.txt with you our data  if you want to have your own dictionary).<br/>
+  (Update dictionary.txt with your data if you want to have your own dictionary).<br/>
   Example:<br/>
   Phone number: 2255<br/>
   Dictionary matched word: CALL<br/>
