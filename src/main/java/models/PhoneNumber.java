@@ -18,12 +18,8 @@ public class PhoneNumber {
         return value.chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
     }
 
-    private void replaceDotWithHyphen() {
-        this.value = value.replaceAll("[.]", "-");
-    }
-
-    private void replaceSpaceWithHyphen() {
-        this.value = value.replaceAll("\\s", "-");
+    private void setBoundaryWithHyphen() {
+        this.value = value.replaceAll("[.\\s]", "-");
     }
 
     private void removeAllPunctuationsOtherThanDotSpace() {
@@ -32,8 +28,7 @@ public class PhoneNumber {
 
     public String removeNoise() {
         removeAllPunctuationsOtherThanDotSpace();
-        replaceDotWithHyphen();
-        replaceSpaceWithHyphen();
+        setBoundaryWithHyphen();
         return value;
     }
 }
