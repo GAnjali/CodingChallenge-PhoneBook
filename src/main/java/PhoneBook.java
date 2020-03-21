@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PhoneBook {
-    static List<PhoneNumber> phoneNumbers;
-    static Dictionary dictionary;
+    private static List<PhoneNumber> phoneNumbers;
+    private static Dictionary dictionary;
 
     public static void main(String[] args) throws IOException, NoArgumentException, NoSuchFileFoundException {
         initialize(args);
@@ -28,7 +28,7 @@ public class PhoneBook {
         }
     }
 
-    static void initialize(String[] args) throws IOException, NoSuchFileFoundException, NoArgumentException {
+    private static void initialize(String[] args) throws IOException, NoSuchFileFoundException, NoArgumentException {
         Input input = new Input();
         if (args.length == 0)
             throw new NoArgumentException();

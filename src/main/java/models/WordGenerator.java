@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class WordGenerator {
-    Dictionary dictionary;
-    Map<Integer, String> keypad = Map.of(
+    private Dictionary dictionary;
+    private Map<Integer, String> keypad = Map.of(
             2, "ABC",
             3, "DEF",
             4, "GHI",
@@ -16,16 +16,16 @@ public class WordGenerator {
             8, "TUV",
             9, "WXYZ"
     );
-    SubWordGenerator subWordGenerator;
+    private SubWordGenerator subWordGenerator;
 
     public WordGenerator(Dictionary dictionary) {
         this.dictionary = dictionary;
+        subWordGenerator = new SubWordGenerator(dictionary);
     }
 
     public List<String> generate(String phoneNumber) {
         List<String> matchedWords = dictionary.getMatchedWords(generatePossibleLetterCombinations(new PhoneNumber(phoneNumber)));
         if (matchedWords.size() == 0) {
-            subWordGenerator = new SubWordGenerator(dictionary);
             return subWordGenerator.generate(phoneNumber, "");
         }
         return matchedWords;

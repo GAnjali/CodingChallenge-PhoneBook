@@ -35,7 +35,7 @@ public class SubWordGenerator {
         return matchedSubWords;
     }
 
-    public List<String> getSubMatchedWord(String subPhoneNumber) {
+    private List<String> getSubMatchedWord(String subPhoneNumber) {
         PhoneNumber subPhoneNum = new PhoneNumber(subPhoneNumber);
         WordGenerator wordGenerator = new WordGenerator(dictionary);
         return dictionary.getMatchedWords(wordGenerator.generatePossibleLetterCombinations(subPhoneNum));
