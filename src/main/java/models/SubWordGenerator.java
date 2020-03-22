@@ -12,19 +12,19 @@ public class SubWordGenerator {
         matchedSubWords = new ArrayList<>();
     }
 
-    public List<String> generate(String phoneNumber, String word) {
+    public List<String> generate(PhoneNumber phoneNumber, String word) {
         boolean foundMatchedWord = false;
-        for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.length(); startIndex++) {
-            for (int endIndex = startIndex + 1; endIndex <= phoneNumber.length(); endIndex++) {
-                List<String> subWordMatch = getSubMatchedWord(phoneNumber.substring(startIndex, endIndex));
+        for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.getValue().length(); startIndex++) {
+            for (int endIndex = startIndex + 1; endIndex <= phoneNumber.getValue().length(); endIndex++) {
+                List<String> subWordMatch = getSubMatchedWord(phoneNumber.getValue().substring(startIndex, endIndex));
                 if (subWordMatch.size() > 0) {
                     word += subWordMatch.get(0);
-                    if (endIndex < phoneNumber.length()) {
-                        word += phoneNumber.charAt(endIndex++);
-                        if (endIndex < phoneNumber.length())
-                            return generate(phoneNumber.substring(endIndex), word);
+                    if (endIndex < phoneNumber.getValue().length()) {
+                        word += phoneNumber.getValue().charAt(endIndex++);
+                        if (endIndex < phoneNumber.getValue().length())
+                            return generate(new PhoneNumber(phoneNumber.getValue().substring(endIndex)), word);
                     }
-                    if (endIndex >= phoneNumber.length()) {
+                    if (endIndex >= phoneNumber.getValue().length()) {
                         matchedSubWords.add(word);
                         foundMatchedWord = true;
                         break;

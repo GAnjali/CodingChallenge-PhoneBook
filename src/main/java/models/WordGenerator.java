@@ -22,8 +22,8 @@ public class WordGenerator {
         this.dictionary = dictionary;
     }
 
-    public List<String> generate(String phoneNumber) {
-        List<String> matchedWords = dictionary.getMatchedWords(generatePossibleLetterCombinations(new PhoneNumber(phoneNumber)));
+    public List<String> generate(PhoneNumber phoneNumber) {
+        List<String> matchedWords = dictionary.getMatchedWords(generatePossibleLetterCombinations(phoneNumber));
         if (matchedWords.size() == 0) {
             subWordGenerator = new SubWordGenerator(dictionary);
             return subWordGenerator.generate(phoneNumber, "");

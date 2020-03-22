@@ -25,7 +25,7 @@ public class PhoneBook {
         Output output = new Output();
         for (PhoneNumber phoneNumber : phoneNumbers) {
             phoneNumber.removeNoise();
-            output.display(phoneNumber.getValue(), wordGenerator.generate(phoneNumber.getValue()));
+            output.display(phoneNumber.getValue(), wordGenerator.generate(phoneNumber));
         }
     }
 
@@ -34,7 +34,7 @@ public class PhoneBook {
         if (args.length == 0) {
             dictionary = new Dictionary(input.loadFile(DICTIONARY_FILE));
             phoneNumbers = input.loadPhoneNumbers();
-        }else{
+        } else {
             phoneNumbers = input.loadFile(args[0]).stream().map(PhoneNumber::new).collect(Collectors.toList());
             dictionary = new Dictionary(input.loadFile(args[1]));
         }
