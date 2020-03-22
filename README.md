@@ -23,8 +23,10 @@ Phone book is an application which is used to generate the list of possible matc
 - Package the jar using maven<br/>
 <pre><code> mvn clean package</code></pre>
 - Run the program<br/>
-(End command line input by entering exit)<br/>
+Way 1 : 
+Enter phone-numbers in command line input by entering exit at the end. And run using<br/>
 <pre> <code> java -cp target/PhoneBook-1.0-SNAPSHOT.jar PhoneBook</code></pre>
+Way 2 : Mention your input phone-numbers and dictionary in the files which are in PhoneBook/src/main/java/data/ directory. And run using<br/>
 <pre> <code> java -cp target/PhoneBook-1.0-SNAPSHOT.jar PhoneBook phone-numbers.txt dictionary.txt</code></pre>
 - Run all tests<br/>
 <pre> <code> mvn clean test</code></pre>
