@@ -24,37 +24,37 @@ public class SubWordGeneratorTest {
 
     @Test
     public void shouldContainREADY2GOForGivenNumber() {
-        List<String> subMatchedWords = subWordGenerator.generate(new PhoneNumber("73239246"), "");
+        List<String> subMatchedWords = subWordGenerator.generateDictionarySubMatchingWords(new PhoneNumber("73239246"), "");
         Assert.assertTrue(subMatchedWords.contains("READY2GO"));
     }
 
     @Test
     public void shouldContainREADY2GO1ForGivenNumber() {
-        List<String> subMatchedWords = subWordGenerator.generate(new PhoneNumber("732392461"), "");
+        List<String> subMatchedWords = subWordGenerator.generateDictionarySubMatchingWords(new PhoneNumber("732392461"), "");
         Assert.assertTrue(subMatchedWords.contains("READY2GO1"));
     }
 
     @Test
     public void shouldContainWAY2ForGivenNumber() {
-        List<String> subMatchedWords = subWordGenerator.generate(new PhoneNumber("9292"), "");
+        List<String> subMatchedWords = subWordGenerator.generateDictionarySubMatchingWords(new PhoneNumber("9292"), "");
         Assert.assertTrue(subMatchedWords.contains("WAY2"));
     }
 
     @Test
     public void shouldContainCALL8MEForGivenNumber() {
-        List<String> subMatchedWords = subWordGenerator.generate(new PhoneNumber("2255863"), "");
+        List<String> subMatchedWords = subWordGenerator.generateDictionarySubMatchingWords(new PhoneNumber("2255863"), "");
         Assert.assertTrue(subMatchedWords.contains("CALL8ME"));
     }
 
     @Test
     public void shouldContainCALLDotMEForGivenNumber() {
-        List<String> subMatchedWords = subWordGenerator.generate(new PhoneNumber("2255.63"), "");
+        List<String> subMatchedWords = subWordGenerator.generateDictionarySubMatchingWords(new PhoneNumber("2255.63"), "");
         Assert.assertTrue(subMatchedWords.contains("CALL.ME"));
     }
 
     @Test
     public void shouldContainCALLHyphenMEForGivenNumber() {
-        List<String> subMatchedWords = subWordGenerator.generate(new PhoneNumber("2255-63"), "");
+        List<String> subMatchedWords = subWordGenerator.generateDictionarySubMatchingWords(new PhoneNumber("2255-63"), "");
         Assert.assertTrue(subMatchedWords.contains("CALL-ME"));
     }
 }

@@ -24,32 +24,32 @@ public class WordGeneratorTest {
 
     @Test
     public void shouldReturnCALLListOfWordsWhenCalledGetDictionaryWordsWith2255() {
-        Assert.assertTrue(wordGenerator.generate(new PhoneNumber("2255")).contains("CALL"));
+        Assert.assertTrue(wordGenerator.generateDictionaryMatchingWords(new PhoneNumber("2255")).contains("CALL"));
     }
 
     @Test
     public void shouldReturnBANGLOREDictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith22645673() {
-        Assert.assertTrue(wordGenerator.generate(new PhoneNumber("22645673")).contains("BANGLORE"));
+        Assert.assertTrue(wordGenerator.generateDictionaryMatchingWords(new PhoneNumber("22645673")).contains("BANGLORE"));
     }
 
     @Test
     public void shouldReturnWAY2DictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() {
-        Assert.assertTrue(wordGenerator.generate(new PhoneNumber("9292")).contains("WAY2"));
+        Assert.assertTrue(wordGenerator.generateDictionaryMatchingWords(new PhoneNumber("9292")).contains("WAY2"));
     }
 
     @Test
     public void shouldReturnS0SDictionaryMatchedListOfWordsWhenCalledGetDictionaryWordsWith9292() {
-        Assert.assertTrue(wordGenerator.generate(new PhoneNumber("707")).contains("S0S"));
+        Assert.assertTrue(wordGenerator.generateDictionaryMatchingWords(new PhoneNumber("707")).contains("S0S"));
     }
 
     @Test
     public void shouldContainCALLDotMEForGivenNumber() {
-        Assert.assertTrue(wordGenerator.generate(new PhoneNumber("2255.63")).contains("CALL.ME"));
+        Assert.assertTrue(wordGenerator.generateDictionaryMatchingWords(new PhoneNumber("2255.63")).contains("CALL.ME"));
     }
 
     @Test
     public void shouldContainCALLHyphenMEForGivenNumber() {
-        List<String> subMatchedWords = wordGenerator.generate(new PhoneNumber("2255-63"));
+        List<String> subMatchedWords = wordGenerator.generateDictionaryMatchingWords(new PhoneNumber("2255-63"));
         Assert.assertTrue(subMatchedWords.contains("CALL-ME"));
     }
 }

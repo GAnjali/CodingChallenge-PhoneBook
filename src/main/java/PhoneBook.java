@@ -25,7 +25,7 @@ public class PhoneBook {
         Output output = new Output();
         for (PhoneNumber phoneNumber : phoneNumbers) {
             phoneNumber.removeNoise();
-            output.display(phoneNumber.getValue(), wordGenerator.generate(phoneNumber));
+            output.display(phoneNumber.getValue(), wordGenerator.generateDictionaryMatchingWords(phoneNumber));
         }
     }
 

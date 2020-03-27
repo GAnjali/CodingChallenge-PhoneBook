@@ -12,7 +12,7 @@ public class SubWordGenerator {
         matchedSubWords = new ArrayList<>();
     }
 
-    public List<String> generate(PhoneNumber phoneNumber, String word) {
+    public List<String> generateDictionarySubMatchingWords(PhoneNumber phoneNumber, String word) {
         boolean foundMatchedWord = false;
         for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.getValue().length(); startIndex++) {
             for (int endIndex = startIndex + 1; endIndex <= phoneNumber.getValue().length(); endIndex++) {
@@ -22,7 +22,7 @@ public class SubWordGenerator {
                     if (endIndex < phoneNumber.getValue().length()) {
                         word += phoneNumber.getValue().charAt(endIndex++);
                         if (endIndex < phoneNumber.getValue().length())
-                            return generate(new PhoneNumber(phoneNumber.getValue().substring(endIndex)), word);
+                            return generateDictionarySubMatchingWords(new PhoneNumber(phoneNumber.getValue().substring(endIndex)), word);
                     }
                     if (endIndex >= phoneNumber.getValue().length()) {
                         matchedSubWords.add(word);

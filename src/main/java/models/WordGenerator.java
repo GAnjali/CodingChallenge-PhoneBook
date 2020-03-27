@@ -22,13 +22,14 @@ public class WordGenerator {
         this.dictionary = dictionary;
     }
 
-    public List<String> generate(PhoneNumber phoneNumber) {
-        List<String> matchedWords = dictionary.getMatchedWords(generatePossibleLetterCombinations(phoneNumber));
-        if (matchedWords.size() == 0) {
+    public List<String> generateDictionaryMatchingWords(PhoneNumber phoneNumber) {
+        List<String> letterCombinations = generatePossibleLetterCombinations(phoneNumber);
+        List<String> dictionaryMatchingWords = dictionary.getMatchedWords(letterCombinations);
+        if (dictionaryMatchingWords.size() == 0) {
             subWordGenerator = new SubWordGenerator(dictionary);
-            return subWordGenerator.generate(phoneNumber, "");
+            return subWordGenerator.generateDictionarySubMatchingWords(phoneNumber, "");
         }
-        return matchedWords;
+        return dictionaryMatchingWords;
     }
 
     public List<String> generatePossibleLetterCombinations(PhoneNumber phoneNumber) {
@@ -37,17 +38,21 @@ public class WordGenerator {
     }
 
     private List<String> getLetterCombinations(List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
-        String keypadCharsOfDigit = keypad.get(digitsOfPhoneNumber.get(currentDigit));
-        if (keypadCharsOfDigit == null) {
-            getLetterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + digitsOfPhoneNumber.get(currentDigit), letterCombinations);
+        String keypadCharactersOfDigit = keypad.get(digitsOfPhoneNumber.get(currentDigit));
+        if (keypadCharactersOfDigit == null) {
+            generateLetterCombinationsWhenThereIsNoMatchInKeyPadForCurrentDigit(digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
         } else {
-            getLetterCombinationsWithKeypadChars(keypadCharsOfDigit, digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
+            generateLetterCombinationsWhenThereIsMatchInKeyPadForCurrentDigit(keypadCharactersOfDigit, digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
         }
         return letterCombinations;
     }
 
-    private void getLetterCombinationsWithKeypadChars(String keypadCharsOfDigit, List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
-        for (Character keypadCharacter : keypadCharsOfDigit.toCharArray()) {
+    private void generateLetterCombinationsWhenThereIsNoMatchInKeyPadForCurrentDigit(List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
+        getLetterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + digitsOfPhoneNumber.get(currentDigit), letterCombinations);
+    }
+
+    private void generateLetterCombinationsWhenThereIsMatchInKeyPadForCurrentDigit(String keypadCharactersOfDigit, List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
+        for (Character keypadCharacter : keypadCharactersOfDigit.toCharArray()) {
             if (currentDigit == digitsOfPhoneNumber.size() - 1) {
                 letterCombinations.add(letterCombination + keypadCharacter);
             } else {
