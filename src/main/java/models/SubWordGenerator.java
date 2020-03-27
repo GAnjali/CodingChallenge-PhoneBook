@@ -18,14 +18,14 @@ public class SubWordGenerator {
             for (int endIndex = startIndex + 1; endIndex <= phoneNumberLength; endIndex++) {
                 List<String> subWordMatch = getSubMatchedWord(phoneNumber.getValue().substring(startIndex, endIndex));
                 if (subWordMatch.size() > 0) {
-                    return handleSubWordMatchFound(phoneNumber.getValue(), subWordMatch, endIndex, word, matchedSubWords);
+                    return handleSubWordMatchFound(phoneNumber.getValue(), subWordMatch, endIndex, word);
                 }
             }
         }
         return matchedSubWords;
     }
 
-    private List<String> handleSubWordMatchFound(String phoneNumber, List<String> subWordMatch, int endIndex, String word, List<String> matchedSubWords) {
+    private List<String> handleSubWordMatchFound(String phoneNumber, List<String> subWordMatch, int endIndex, String word) {
         word += subWordMatch.get(0);
         if (endIndex < phoneNumber.length()) {
             word += phoneNumber.charAt(endIndex++);

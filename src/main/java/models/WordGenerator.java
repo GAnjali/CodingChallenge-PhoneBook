@@ -42,7 +42,7 @@ public class WordGenerator {
         if (keypadCharactersOfDigit == null) {
             handleNoMatchInKeyPadForCurrentDigit(digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
         } else {
-            handleMatchInKeyPadForCurrentDigit(keypadCharactersOfDigit, digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
+            handleMatchFoundInKeyPadForCurrentDigit(keypadCharactersOfDigit, digitsOfPhoneNumber, currentDigit, letterCombination, letterCombinations);
         }
         return letterCombinations;
     }
@@ -51,7 +51,7 @@ public class WordGenerator {
         getLetterCombinations(digitsOfPhoneNumber, currentDigit + 1, letterCombination + digitsOfPhoneNumber.get(currentDigit), letterCombinations);
     }
 
-    private void handleMatchInKeyPadForCurrentDigit(String keypadCharactersOfDigit, List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
+    private void handleMatchFoundInKeyPadForCurrentDigit(String keypadCharactersOfDigit, List<Integer> digitsOfPhoneNumber, int currentDigit, String letterCombination, List<String> letterCombinations) {
         for (Character keypadCharacter : keypadCharactersOfDigit.toCharArray()) {
             if (currentDigit == digitsOfPhoneNumber.size() - 1) {
                 letterCombinations.add(letterCombination + keypadCharacter);
