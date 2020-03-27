@@ -13,25 +13,26 @@ public class SubWordGenerator {
     }
 
     public List<String> generateDictionarySubMatchingWords(PhoneNumber phoneNumber, String word) {
-        boolean foundMatchedWord = false;
-        for (int startIndex = 0; !foundMatchedWord && startIndex < phoneNumber.getValue().length(); startIndex++) {
-            for (int endIndex = startIndex + 1; endIndex <= phoneNumber.getValue().length(); endIndex++) {
+        int phoneNumberLength = phoneNumber.getValue().length();
+        for (int startIndex = 0; startIndex < phoneNumberLength; startIndex++) {
+            for (int endIndex = startIndex + 1; endIndex <= phoneNumberLength; endIndex++) {
                 List<String> subWordMatch = getSubMatchedWord(phoneNumber.getValue().substring(startIndex, endIndex));
                 if (subWordMatch.size() > 0) {
-                    word += subWordMatch.get(0);
-                    if (endIndex < phoneNumber.getValue().length()) {
-                        word += phoneNumber.getValue().charAt(endIndex++);
-                        if (endIndex < phoneNumber.getValue().length())
-                            return generateDictionarySubMatchingWords(new PhoneNumber(phoneNumber.getValue().substring(endIndex)), word);
-                    }
-                    if (endIndex >= phoneNumber.getValue().length()) {
-                        matchedSubWords.add(word);
-                        foundMatchedWord = true;
-                        break;
-                    }
+                    return handleSubWordMatchFound(phoneNumber.getValue(), subWordMatch, endIndex, word, matchedSubWords);
                 }
             }
         }
+        return matchedSubWords;
+    }
+
+    private List<String> handleSubWordMatchFound(String phoneNumber, List<String> subWordMatch, int endIndex, String word, List<String> matchedSubWords) {
+        word += subWordMatch.get(0);
+        if (endIndex < phoneNumber.length()) {
+            word += phoneNumber.charAt(endIndex++);
+            if (endIndex < phoneNumber.length())
+                return generateDictionarySubMatchingWords(new PhoneNumber(phoneNumber.substring(endIndex)), word);
+        }
+        matchedSubWords.add(word);
         return matchedSubWords;
     }
 
